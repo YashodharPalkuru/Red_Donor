@@ -83,7 +83,7 @@
               				</div>
 						</div>
 						<div class="tab-pane" id="register">
-							<form class="form-signin" action="register.htm" method="POST">
+							<form class="form-signin" action="register1.htm" method="POST">
 							    <div class="form-group has-feedback">
 								<input type="text" name="firstname" class="form-control" placeholder="First Name" required>
 								<i class="glyphicon glyphicon-user form-control-feedback"></i>
@@ -132,7 +132,7 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="resources/theme1/scripts/bootstrap.min.js"></script>
     <script src="resources/theme1/scripts/reddonor.js"></script>
-    <script src="resources/theme1/scripts/init.js"></script>
+    
 
 
 </body>

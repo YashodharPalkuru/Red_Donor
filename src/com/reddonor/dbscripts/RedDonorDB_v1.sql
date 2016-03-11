@@ -106,10 +106,10 @@ INSERT INTO `donor_login` (`dl_id`, `dl_mobile`, `dl_pswd`, `dl_csrf_token`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `donor_register`
+-- Table structure for table `user_registration_tbl`
 --
 
-CREATE TABLE IF NOT EXISTS `donor_register` (
+CREATE TABLE IF NOT EXISTS `user_registration_tbl` (
   `dr_id` int(11) NOT NULL AUTO_INCREMENT,
   `dr_firstname` varchar(30) NOT NULL,
   `dr_lastname` varchar(30) NOT NULL,
@@ -122,10 +122,10 @@ CREATE TABLE IF NOT EXISTS `donor_register` (
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
--- Dumping data for table `donor_register`
+-- Dumping data for table `user_registration_tbl`
 --
 
-INSERT INTO `donor_register` (`dr_id`, `dr_firstname`, `dr_lastname`, `dr_ci_id`, `dr_email`, `dr_ar_id`, `dr_co_id`, `dr_bg_id`) VALUES
+INSERT INTO `user_registration_tbl` (`dr_id`, `dr_firstname`, `dr_lastname`, `dr_ci_id`, `dr_email`, `dr_ar_id`, `dr_co_id`, `dr_bg_id`) VALUES
 (1, '', '', 0, '', 0, 0, 0);
 
 -- --------------------------------------------------------

@@ -17,7 +17,7 @@ public class DbManager
     	{
     		try 
     		{
-				String url = "jdbc:mysql://local.host:3306/RedDonorDB";
+				String url = "jdbc:mysql://localhost:3306/RedDonorDB";
 				Class.forName("com.mysql.jdbc.Driver");
 				connection = DriverManager.getConnection(url, "root","");
 			} 

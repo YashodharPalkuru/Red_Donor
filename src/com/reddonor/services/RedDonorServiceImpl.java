@@ -1,10 +1,16 @@
 package com.reddonor.services;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
 
 import com.reddonor.dao.RedDonorDao;
 import com.reddonor.entity.LoginBean;
 import com.reddonor.entity.UserBean;
+import com.restfb.json.JsonArray;
 
 import facebook4j.Facebook;
 import facebook4j.FacebookFactory;
@@ -95,11 +101,11 @@ public class RedDonorServiceImpl implements RedDonorService{
 	}
 
 	@Override
-	public boolean register(String fname, String lname, String email,
-			String password) throws Exception {
+	public LoginBean register(String fname, String lname, String email,
+			String password,String fbId) throws Exception {
 		// TODO Auto-generated method stub
 		
-		return redDonorDao.register(fname, lname, email, password);
+		return redDonorDao.register(fname, lname, email, password,fbId);
 	}
 
 	@Override
@@ -107,6 +113,36 @@ public class RedDonorServiceImpl implements RedDonorService{
 		// TODO Auto-generated method stub
 		
 		return redDonorDao.isEmailAvailable(email);
+	}
+
+	@Override
+	public JSONArray getDonorList(String bloodGroup, String state,
+			String district, String subDistrict) throws SQLException {
+		JSONArray donorsList;
+		donorsList = redDonorDao.getDonorList(bloodGroup,state,district,subDistrict);
+		return donorsList;
+	}
+
+	@Override
+	public JSONArray getStatesList(String country) throws SQLException {
+		// TODO Auto-generated method stub
+		return redDonorDao.getStatesList(country);
+	}
+	
+	public JSONArray  getDistrictsList(String state) throws SQLException {
+		// TODO Auto-generated method stub
+		return redDonorDao.getDistrictsList(state);
+	}
+	
+	public JSONArray  getSubDistrictsList(String district) throws SQLException {
+		// TODO Auto-generated method stub
+		return redDonorDao.getSubDistrictsList(district);
+	}
+
+	@Override
+	public UserBean registerDetails(String bloodGroup, String mobile,
+			String state, String district, String subDistrict, String usrID, String facebookId) throws SQLException {
+		return redDonorDao.registerDetails(bloodGroup, mobile, state, district, subDistrict,usrID, facebookId);
 	}
 
 

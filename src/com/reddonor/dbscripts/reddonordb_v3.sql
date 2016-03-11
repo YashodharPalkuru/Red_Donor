@@ -1,22 +1,20 @@
 -- phpMyAdmin SQL Dump
--- version 3.3.9
+-- version 4.5.1
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Oct 01, 2015 at 10:43 PM
--- Server version: 5.5.8
--- PHP Version: 5.3.5
+-- Host: 127.0.0.1
+-- Generation Time: Feb 11, 2016 at 10:48 PM
+-- Server version: 10.1.9-MariaDB
+-- PHP Version: 5.6.15
 
---
--- new schema after updating with address fields with india addresses.
---
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `reddonordb`
@@ -28,17 +26,16 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Table structure for table `bloodgroup`
 --
 
-CREATE TABLE IF NOT EXISTS `bloodgroup` (
-  `bg_id` int(11) NOT NULL AUTO_INCREMENT,
-  `bg_name` varchar(10) NOT NULL,
-  PRIMARY KEY (`bg_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=9 ;
+CREATE TABLE `bloodgroup` (
+  `bloodgroup_id` int(11) NOT NULL,
+  `bloodgroup_name` varchar(10) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `bloodgroup`
 --
 
-INSERT INTO `bloodgroup` (`bg_id`, `bg_name`) VALUES
+INSERT INTO `bloodgroup` (`bloodgroup_id`, `bloodgroup_name`) VALUES
 (1, 'A+'),
 (2, 'A-'),
 (3, 'AB+'),
@@ -54,17 +51,16 @@ INSERT INTO `bloodgroup` (`bg_id`, `bg_name`) VALUES
 -- Table structure for table `countries`
 --
 
-CREATE TABLE IF NOT EXISTS `countries` (
-  `CountryId` int(11) NOT NULL AUTO_INCREMENT,
-  `CountryName` varchar(100) NOT NULL,
-  PRIMARY KEY (`CountryId`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1624 ;
+CREATE TABLE `countries` (
+  `country_id` int(11) NOT NULL,
+  `country_name` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `countries`
 --
 
-INSERT INTO `countries` (`CountryId`, `CountryName`) VALUES
+INSERT INTO `countries` (`country_id`, `country_name`) VALUES
 (1, 'India');
 
 -- --------------------------------------------------------
@@ -73,18 +69,17 @@ INSERT INTO `countries` (`CountryId`, `CountryName`) VALUES
 -- Table structure for table `districts`
 --
 
-CREATE TABLE IF NOT EXISTS `districts` (
-  `DistrictId` int(11) NOT NULL AUTO_INCREMENT,
-  `DistrictName` varchar(100) NOT NULL,
-  `StateId` varchar(100) NOT NULL,
-  PRIMARY KEY (`DistrictId`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1624 ;
+CREATE TABLE `districts` (
+  `district_id` int(11) NOT NULL,
+  `district_name` varchar(100) NOT NULL,
+  `district_state_id` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `districts`
 --
 
-INSERT INTO `districts` (`DistrictId`, `DistrictName`, `StateId`) VALUES
+INSERT INTO `districts` (`district_id`, `district_name`, `district_state_id`) VALUES
 (1, 'Nicobar', '1'),
 (2, 'North and Middle Andama', '1'),
 (3, 'South Andama', '1'),
@@ -760,90 +755,20 @@ INSERT INTO `districts` (`DistrictId`, `DistrictName`, `StateId`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `donor_login`
---
-
-CREATE TABLE IF NOT EXISTS `donor_login` (
-  `dl_id` int(11) NOT NULL AUTO_INCREMENT,
-  `dl_email` varchar(50) NOT NULL,
-  `dl_mobile` int(11) DEFAULT NULL,
-  `dl_pswd` varchar(50) DEFAULT NULL,
-  `dl_csrf_token` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`dl_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `donor_login`
---
-
-INSERT INTO `donor_login` (`dl_id`, `dl_email`, `dl_mobile`, `dl_pswd`, `dl_csrf_token`) VALUES
-(1, 'yasodhar@gmail.com', NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user_registration_tbl`
---
-
-CREATE TABLE IF NOT EXISTS `user_registration_tbl` (
-  `dr_id` int(11) NOT NULL AUTO_INCREMENT,
-  `fb_id` varchar(20) DEFAULT NULL,
-  `dr_firstname` varchar(30) DEFAULT NULL,
-  `dr_lastname` varchar(30) DEFAULT NULL,
-  `dr_email` varchar(50) DEFAULT NULL,
-  `dr_mobile` varchar(15) DEFAULT NULL,
-  `dr_bg_id` int(11) DEFAULT NULL,
-  `CountryId` int(11) NOT NULL DEFAULT '1',
-  `StateId` int(11) DEFAULT NULL,
-  `DistrictId` int(11) DEFAULT NULL,
-  `SubDistrictsId` int(11) DEFAULT NULL,
-  PRIMARY KEY (`dr_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
-
---
--- Dumping data for table `user_registration_tbl`
---
-
-INSERT INTO `user_registration_tbl` (`dr_id`, `fb_id`, `dr_firstname`, `dr_lastname`, `dr_email`, `dr_mobile`, `dr_bg_id`, `CountryId`, `StateId`, `DistrictId`, `SubDistrictsId`) VALUES
-(1, NULL, 'Yashodhar', 'Palkuru', 'yasodhar@gmail.com', NULL, NULL, 1, NULL, NULL, NULL);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `dr_table`
---
-
-CREATE TABLE IF NOT EXISTS `dr_table` (
-  `dr_id` int(11) NOT NULL AUTO_INCREMENT,
-  `dr_d_id` int(11) NOT NULL,
-  `dr_r_id` int(11) NOT NULL,
-  `dr_sts_id` int(11) NOT NULL,
-  PRIMARY KEY (`dr_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
-
---
--- Dumping data for table `dr_table`
---
-
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `states`
 --
 
-CREATE TABLE IF NOT EXISTS `states` (
-  `StateId` int(11) NOT NULL AUTO_INCREMENT,
-  `StateName` varchar(100) NOT NULL,
-  `CountryId` varchar(100) NOT NULL,
-  PRIMARY KEY (`StateId`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1624 ;
+CREATE TABLE `states` (
+  `state_id` int(11) NOT NULL,
+  `state_name` varchar(100) NOT NULL,
+  `state_country_id` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `states`
 --
 
-INSERT INTO `states` (`StateId`, `StateName`, `CountryId`) VALUES
+INSERT INTO `states` (`state_id`, `state_name`, `state_country_id`) VALUES
 (1, 'Andaman and Nicobar Island', '1'),
 (2, 'Andhra Pradesh', '1'),
 (3, 'Arunachal Pradesh', '1'),
@@ -887,17 +812,16 @@ INSERT INTO `states` (`StateId`, `StateName`, `CountryId`) VALUES
 -- Table structure for table `status`
 --
 
-CREATE TABLE IF NOT EXISTS `status` (
-  `sts_id` int(11) NOT NULL AUTO_INCREMENT,
-  `sts_name` varchar(30) NOT NULL,
-  PRIMARY KEY (`sts_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
+CREATE TABLE `status` (
+  `status_id` int(11) NOT NULL,
+  `status_name` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `status`
 --
 
-INSERT INTO `status` (`sts_id`, `sts_name`) VALUES
+INSERT INTO `status` (`status_id`, `status_name`) VALUES
 (1, 'Accept'),
 (2, 'Reject');
 
@@ -907,18 +831,17 @@ INSERT INTO `status` (`sts_id`, `sts_name`) VALUES
 -- Table structure for table `subdistricts`
 --
 
-CREATE TABLE IF NOT EXISTS `subdistricts` (
-  `SubDistrictsId` int(11) NOT NULL AUTO_INCREMENT,
-  `SubDistrictsName` varchar(100) NOT NULL,
-  `DistrictId` varchar(100) NOT NULL,
-  PRIMARY KEY (`SubDistrictsId`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=5648 ;
+CREATE TABLE `subdistricts` (
+  `subdistrict_id` int(11) NOT NULL,
+  `subdistrict_name` varchar(100) NOT NULL,
+  `subdistrict_district_id` varchar(100) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `subdistricts`
 --
 
-INSERT INTO `subdistricts` (`SubDistrictsId`, `SubDistrictsName`, `DistrictId`) VALUES
+INSERT INTO `subdistricts` (`subdistrict_id`, `subdistrict_name`, `subdistrict_district_id`) VALUES
 (1, 'Car Nicobar', '1'),
 (2, 'Nancowry', '1'),
 (3, 'Great Nicobar', '1'),
@@ -2993,9 +2916,9 @@ INSERT INTO `subdistricts` (`SubDistrictsId`, `SubDistrictsName`, `DistrictId`) 
 (2072, 'Neyyattinkara', '294'),
 (2073, 'Talappilly', '295'),
 (2074, 'Chavakkad', '295'),
-(2075, 'Thrissur', '295'),
-(2076, 'Kodungallur', '295');
-INSERT INTO `subdistricts` (`SubDistrictsId`, `SubDistrictsName`, `DistrictId`) VALUES
+(2075, 'Thrissur', '295');
+INSERT INTO `subdistricts` (`subdistrict_id`, `subdistrict_name`, `subdistrict_district_id`) VALUES
+(2076, 'Kodungallur', '295'),
 (2077, 'Mukundapuram', '295'),
 (2078, 'Mananthavady', '296'),
 (2079, 'Sulthanbathery', '296'),
@@ -4994,10 +4917,10 @@ INSERT INTO `subdistricts` (`SubDistrictsId`, `SubDistrictsName`, `DistrictId`) 
 (4072, 'Malharrao', '622'),
 (4073, 'Mutharam (Manthani)', '622'),
 (4074, 'Srirampur', '622'),
-(4075, 'Peddapalle', '622'),
+(4075, 'Peddapalle', '622');
+INSERT INTO `subdistricts` (`subdistrict_id`, `subdistrict_name`, `subdistrict_district_id`) VALUES
 (4076, 'Julapalle', '622'),
-(4077, 'Elgaid', '622');
-INSERT INTO `subdistricts` (`SubDistrictsId`, `SubDistrictsName`, `DistrictId`) VALUES
+(4077, 'Elgaid', '622'),
 (4078, 'Dharmaram', '622'),
 (4079, 'llapalle', '622'),
 (4080, 'Mallial', '622'),
@@ -6568,3 +6491,151 @@ INSERT INTO `subdistricts` (`SubDistrictsId`, `SubDistrictsName`, `DistrictId`) 
 (5645, 'Sattur', '546'),
 (5646, 'Kariapatti', '546'),
 (5647, 'Tiruchuli', '546');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usr_login`
+--
+
+CREATE TABLE `usr_login` (
+  `usr_log_id` int(11) NOT NULL,
+  `usr_log_email` varchar(50) NOT NULL,
+  `usr_log_mobile` int(11) DEFAULT NULL,
+  `usr_pswd` varchar(50) DEFAULT NULL,
+  `usr_csrf_token` varchar(100) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `usr_login`
+--
+
+INSERT INTO `usr_login` (`usr_log_id`, `usr_log_email`, `usr_log_mobile`, `usr_pswd`, `usr_csrf_token`) VALUES
+(1, 'yasodhar@gmail.com', NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `usr_registration_tbl`
+--
+
+CREATE TABLE `usr_registration_tbl` (
+  `usr_id` int(11) NOT NULL,
+  `usr_facebook_id` varchar(20) DEFAULT NULL,
+  `usr_firstname` varchar(30) DEFAULT NULL,
+  `usr_lastname` varchar(30) DEFAULT NULL,
+  `usr_email` varchar(50) DEFAULT NULL,
+  `usr_mobile` varchar(15) DEFAULT NULL,
+  `usr_bloodgroup_id` int(11) DEFAULT NULL,
+  `usr_country_id` int(11) NOT NULL DEFAULT '1',
+  `usr_state_id` int(11) DEFAULT NULL,
+  `usr_district_id` int(11) DEFAULT NULL,
+  `usr_subdistrict_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `usr_registration_tbl`
+--
+
+INSERT INTO `usr_registration_tbl` (`usr_id`, `usr_facebook_id`, `usr_firstname`, `usr_lastname`, `usr_email`, `usr_mobile`, `usr_bloodgroup_id`, `usr_country_id`, `usr_state_id`, `usr_district_id`, `usr_subdistrict_id`) VALUES
+(1, NULL, 'Yashodhar', 'Palkuru', 'yasodhar@gmail.com', NULL, NULL, 1, NULL, NULL, NULL);
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `bloodgroup`
+--
+ALTER TABLE `bloodgroup`
+  ADD PRIMARY KEY (`bloodgroup_id`);
+
+--
+-- Indexes for table `countries`
+--
+ALTER TABLE `countries`
+  ADD PRIMARY KEY (`country_id`);
+
+--
+-- Indexes for table `districts`
+--
+ALTER TABLE `districts`
+  ADD PRIMARY KEY (`district_id`);
+
+--
+-- Indexes for table `states`
+--
+ALTER TABLE `states`
+  ADD PRIMARY KEY (`state_id`);
+
+--
+-- Indexes for table `status`
+--
+ALTER TABLE `status`
+  ADD PRIMARY KEY (`status_id`);
+
+--
+-- Indexes for table `subdistricts`
+--
+ALTER TABLE `subdistricts`
+  ADD PRIMARY KEY (`subdistrict_id`);
+
+--
+-- Indexes for table `usr_login`
+--
+ALTER TABLE `usr_login`
+  ADD PRIMARY KEY (`usr_log_id`);
+
+--
+-- Indexes for table `usr_registration_tbl`
+--
+ALTER TABLE `usr_registration_tbl`
+  ADD PRIMARY KEY (`usr_id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `bloodgroup`
+--
+ALTER TABLE `bloodgroup`
+  MODIFY `bloodgroup_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `countries`
+--
+ALTER TABLE `countries`
+  MODIFY `country_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1624;
+--
+-- AUTO_INCREMENT for table `districts`
+--
+ALTER TABLE `districts`
+  MODIFY `district_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1624;
+--
+-- AUTO_INCREMENT for table `states`
+--
+ALTER TABLE `states`
+  MODIFY `state_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1624;
+--
+-- AUTO_INCREMENT for table `status`
+--
+ALTER TABLE `status`
+  MODIFY `status_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `subdistricts`
+--
+ALTER TABLE `subdistricts`
+  MODIFY `subdistrict_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5648;
+--
+-- AUTO_INCREMENT for table `usr_login`
+--
+ALTER TABLE `usr_login`
+  MODIFY `usr_log_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `usr_registration_tbl`
+--
+ALTER TABLE `usr_registration_tbl`
+  MODIFY `usr_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
